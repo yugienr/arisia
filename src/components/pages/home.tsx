@@ -24,14 +24,19 @@ export default function LandingPage() {
         <div className="max-w-[980px] mx-auto flex h-12 items-center justify-between px-4">
           <div className="flex items-center">
             <Link to="/" className="font-medium text-xl">
-              Tempo Starter Kit
+              Arisia
             </Link>
           </div>
           <div className="flex items-center space-x-4">
             {user ? (
               <div className="flex items-center gap-4">
                 <Link to="/dashboard">
-                  <Button variant="ghost" className="text-sm font-light hover:text-gray-500">Dashboard</Button>
+                  <Button
+                    variant="ghost"
+                    className="text-sm font-light hover:text-gray-500"
+                  >
+                    Dashboard
+                  </Button>
                 </Link>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -45,8 +50,13 @@ export default function LandingPage() {
                       </AvatarFallback>
                     </Avatar>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="rounded-xl border-none shadow-lg">
-                    <DropdownMenuLabel className="text-xs text-gray-500">{user.email}</DropdownMenuLabel>
+                  <DropdownMenuContent
+                    align="end"
+                    className="rounded-xl border-none shadow-lg"
+                  >
+                    <DropdownMenuLabel className="text-xs text-gray-500">
+                      {user.email}
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="cursor-pointer">
                       <User className="mr-2 h-4 w-4" />
@@ -57,7 +67,10 @@ export default function LandingPage() {
                       Settings
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer" onSelect={() => signOut()}>
+                    <DropdownMenuItem
+                      className="cursor-pointer"
+                      onSelect={() => signOut()}
+                    >
                       Log out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -66,10 +79,17 @@ export default function LandingPage() {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="ghost" className="text-sm font-light hover:text-gray-500">Sign In</Button>
+                  <Button
+                    variant="ghost"
+                    className="text-sm font-light hover:text-gray-500"
+                  >
+                    Sign In
+                  </Button>
                 </Link>
                 <Link to="/signup">
-                  <Button className="rounded-full bg-black text-white hover:bg-gray-800 text-sm px-4">Get Started</Button>
+                  <Button className="rounded-full bg-black text-white hover:bg-gray-800 text-sm px-4">
+                    Get Started
+                  </Button>
                 </Link>
               </>
             )}
@@ -80,50 +100,107 @@ export default function LandingPage() {
       <main className="pt-12">
         {/* Hero section */}
         <section className="py-20 text-center">
-          <h2 className="text-5xl font-semibold tracking-tight mb-1">Tempo Starter Kit</h2>
-          <h3 className="text-2xl font-medium text-gray-500 mb-4">A modern full-stack starter kit with React & Supabase.</h3>
+          <h2 className="text-5xl font-semibold tracking-tight mb-1">
+            Tempo Starter Kit
+          </h2>
+          <h3 className="text-2xl font-medium text-gray-500 mb-4">
+            A modern full-stack starter kit with React & Supabase.
+          </h3>
           <div className="flex justify-center space-x-6 text-xl text-blue-600">
-            <Link to="/" className="flex items-center hover:underline">Learn more <ChevronRight className="h-4 w-4" /></Link>
-            <Link to="/signup" className="flex items-center hover:underline">Get started <ChevronRight className="h-4 w-4" /></Link>
+            <Link to="/" className="flex items-center hover:underline">
+              Learn more <ChevronRight className="h-4 w-4" />
+            </Link>
+            <Link to="/signup" className="flex items-center hover:underline">
+              Get started <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
-
         </section>
 
         {/* Features section */}
         <section className="py-20 bg-[#f5f5f7] text-center">
-          <h2 className="text-5xl font-semibold tracking-tight mb-1">Powerful Features</h2>
-          <h3 className="text-2xl font-medium text-gray-500 mb-4">Everything you need to build modern web applications</h3>
+          <h2 className="text-5xl font-semibold tracking-tight mb-1">
+            Powerful Features
+          </h2>
+          <h3 className="text-2xl font-medium text-gray-500 mb-4">
+            Everything you need to build modern web applications
+          </h3>
           <div className="flex justify-center space-x-6 text-xl text-blue-600">
-            <Link to="/" className="flex items-center hover:underline">Explore features <ChevronRight className="h-4 w-4" /></Link>
-            <Link to="/" className="flex items-center hover:underline">View documentation <ChevronRight className="h-4 w-4" /></Link>
+            <Link to="/" className="flex items-center hover:underline">
+              Explore features <ChevronRight className="h-4 w-4" />
+            </Link>
+            <Link to="/" className="flex items-center hover:underline">
+              View documentation <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
           <div className="mt-8 max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-8 rounded-2xl shadow-sm text-left">
               <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-blue-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
               </div>
               <h4 className="text-xl font-medium mb-2">Lightning Fast</h4>
-              <p className="text-gray-500">Built with performance in mind for the best developer and user experience.</p>
+              <p className="text-gray-500">
+                Built with performance in mind for the best developer and user
+                experience.
+              </p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm text-left">
               <div className="h-12 w-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-purple-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                  />
                 </svg>
               </div>
               <h4 className="text-xl font-medium mb-2">Modern Stack</h4>
-              <p className="text-gray-500">Uses React, Supabase, and other modern tools to build robust applications.</p>
+              <p className="text-gray-500">
+                Uses React, Supabase, and other modern tools to build robust
+                applications.
+              </p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm text-left">
               <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-green-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                  />
                 </svg>
               </div>
               <h4 className="text-xl font-medium mb-2">Beautiful UI</h4>
-              <p className="text-gray-500">Comes with a set of beautiful, responsive components ready to use.</p>
+              <p className="text-gray-500">
+                Comes with a set of beautiful, responsive components ready to
+                use.
+              </p>
             </div>
           </div>
         </section>
@@ -131,11 +208,19 @@ export default function LandingPage() {
         {/* Grid section for other features */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3">
           <div className="bg-[#f5f5f7] rounded-3xl p-12 text-center">
-            <h2 className="text-4xl font-semibold tracking-tight mb-1">Authentication</h2>
-            <h3 className="text-xl font-medium text-gray-500 mb-4">Secure and easy to implement</h3>
+            <h2 className="text-4xl font-semibold tracking-tight mb-1">
+              Authentication
+            </h2>
+            <h3 className="text-xl font-medium text-gray-500 mb-4">
+              Secure and easy to implement
+            </h3>
             <div className="flex justify-center space-x-6 text-lg text-blue-600">
-              <Link to="/" className="flex items-center hover:underline">Learn more <ChevronRight className="h-4 w-4" /></Link>
-              <Link to="/" className="flex items-center hover:underline">View example <ChevronRight className="h-4 w-4" /></Link>
+              <Link to="/" className="flex items-center hover:underline">
+                Learn more <ChevronRight className="h-4 w-4" />
+              </Link>
+              <Link to="/" className="flex items-center hover:underline">
+                View example <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
             <div className="mt-4 bg-white p-6 rounded-xl shadow-sm max-w-sm mx-auto">
               <div className="space-y-4">
@@ -152,11 +237,19 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="bg-[#f5f5f7] rounded-3xl p-12 text-center">
-            <h2 className="text-4xl font-semibold tracking-tight mb-1">Database</h2>
-            <h3 className="text-xl font-medium text-gray-500 mb-4">Powered by Supabase</h3>
+            <h2 className="text-4xl font-semibold tracking-tight mb-1">
+              Database
+            </h2>
+            <h3 className="text-xl font-medium text-gray-500 mb-4">
+              Powered by Supabase
+            </h3>
             <div className="flex justify-center space-x-6 text-lg text-blue-600">
-              <Link to="/" className="flex items-center hover:underline">Learn more <ChevronRight className="h-4 w-4" /></Link>
-              <Link to="/" className="flex items-center hover:underline">View docs <ChevronRight className="h-4 w-4" /></Link>
+              <Link to="/" className="flex items-center hover:underline">
+                Learn more <ChevronRight className="h-4 w-4" />
+              </Link>
+              <Link to="/" className="flex items-center hover:underline">
+                View docs <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
             <div className="mt-4 bg-gray-900 p-6 rounded-xl shadow-sm max-w-sm mx-auto text-left">
               <pre className="text-green-400 text-xs font-mono overflow-x-auto">
@@ -178,39 +271,109 @@ export default function LandingPage() {
         <div className="max-w-[980px] mx-auto px-4">
           <div className="border-b border-gray-300 pb-8 grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h4 className="font-medium text-sm text-gray-900 mb-4">Tempo Starter Kit</h4>
+              <h4 className="font-medium text-sm text-gray-900 mb-4">
+                Tempo Starter Kit
+              </h4>
               <ul className="space-y-2">
-                <li><Link to="/" className="hover:underline">Features</Link></li>
-                <li><Link to="/" className="hover:underline">Documentation</Link></li>
-                <li><Link to="/" className="hover:underline">Components</Link></li>
-                <li><Link to="/" className="hover:underline">Examples</Link></li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Components
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Examples
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-sm text-gray-900 mb-4">Resources</h4>
+              <h4 className="font-medium text-sm text-gray-900 mb-4">
+                Resources
+              </h4>
               <ul className="space-y-2">
-                <li><Link to="/" className="hover:underline">Getting Started</Link></li>
-                <li><Link to="/" className="hover:underline">API Reference</Link></li>
-                <li><Link to="/" className="hover:underline">Tutorials</Link></li>
-                <li><Link to="/" className="hover:underline">Blog</Link></li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Getting Started
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    API Reference
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Tutorials
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Blog
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-sm text-gray-900 mb-4">Community</h4>
+              <h4 className="font-medium text-sm text-gray-900 mb-4">
+                Community
+              </h4>
               <ul className="space-y-2">
-                <li><Link to="/" className="hover:underline">GitHub</Link></li>
-                <li><Link to="/" className="hover:underline">Discord</Link></li>
-                <li><Link to="/" className="hover:underline">Twitter</Link></li>
-                <li><Link to="/" className="hover:underline">YouTube</Link></li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    GitHub
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Discord
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Twitter
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    YouTube
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-medium text-sm text-gray-900 mb-4">Legal</h4>
               <ul className="space-y-2">
-                <li><Link to="/" className="hover:underline">Privacy</Link></li>
-                <li><Link to="/" className="hover:underline">Terms</Link></li>
-                <li><Link to="/" className="hover:underline">Cookie Policy</Link></li>
-                <li><Link to="/" className="hover:underline">Licenses</Link></li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Terms
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Cookie Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="hover:underline">
+                    Licenses
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
