@@ -33,10 +33,10 @@ export default function SignUpForm() {
       return;
     }
     try {
-      await signUp(email, password, fullName, role);
+      await signUp(email, password, fullName, role, phoneNumber);
       toast({
-        title: "Registrasi berhasil",
-        description: "Silahkan login dengan akun yang telah dibuat.",
+        title: "Registrasi Berhasil",
+        description: "Silahkan Login",
         duration: 5000,
       });
       navigate("/login");

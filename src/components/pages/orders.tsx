@@ -57,7 +57,16 @@ export default function OrdersPage() {
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Your Orders</h1>
+        <div className="flex items-center gap-4">
+          <Button
+            variant="outline"
+            onClick={() => navigate("/dashboard")}
+            className="border-gray-300 text-gray-700 hover:bg-gray-50"
+          >
+            Back to Dashboard
+          </Button>
+          <h1 className="text-3xl font-bold">Your Orders</h1>
+        </div>
         <Button onClick={() => navigate("/new-order")}>New Order</Button>
       </div>
 

@@ -119,11 +119,12 @@ export default function LandingPage() {
               pesawat, kereta, atau kendaraan dengan mudah.
             </h2>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-              <Link to="/signup">
-                <Button className="rounded-full bg-blue-600 text-white hover:bg-blue-700 text-base px-8 py-6 shadow-lg hover:shadow-xl transition-all w-full sm:w-auto">
-                  Mulai Sekarang
-                </Button>
-              </Link>
+              <Button
+                onClick={() => navigate("/signup")}
+                className="rounded-full bg-blue-600 text-white hover:bg-blue-700 text-base px-8 py-6 shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              >
+                Mulai Sekarang
+              </Button>
               <Link to="/">
                 <Button
                   variant="outline"

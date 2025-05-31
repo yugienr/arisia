@@ -26,7 +26,16 @@ export default function NewOrderPage() {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6">Create New Order</h1>
+      <div className="flex items-center gap-4 mb-6">
+        <Button
+          variant="outline"
+          onClick={() => navigate("/dashboard")}
+          className="border-gray-300 text-gray-700 hover:bg-gray-50"
+        >
+          Back to Dashboard
+        </Button>
+        <h1 className="text-3xl font-bold">Create New Order</h1>
+      </div>
 
       <Card>
         <CardHeader>

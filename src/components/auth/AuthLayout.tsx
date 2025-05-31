@@ -12,23 +12,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
               Arisia
             </Link>
           </div>
-          <nav className="hidden md:flex items-center space-x-7 text-sm font-light">
-            <Link to="/" className="hover:text-gray-500">
-              Features
-            </Link>
-            <Link to="/" className="hover:text-gray-500">
-              Documentation
-            </Link>
-            <Link to="/" className="hover:text-gray-500">
-              Components
-            </Link>
-            <Link to="/" className="hover:text-gray-500">
-              Examples
-            </Link>
-            <Link to="/" className="hover:text-gray-500">
-              Support
-            </Link>
-          </nav>
         </div>
       </header>
 

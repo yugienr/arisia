@@ -23,6 +23,7 @@ type AuthContextType = {
     password: string,
     fullName: string,
     role?: UserRole,
+    phoneNumber?: string,
   ) => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (
@@ -41,20 +42,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Fetch user data from the database
   const fetchUserData = async (userId: string) => {
     const { data, error } = await supabase
-      .from("profiles") // Ambil dari tabel profiles
-      .select("id, full_name, phone_number") // Pilih field yang dibutuhkan
+      .from("users")
+      .select("id, email, full_name, phone_number, role")
       .eq("id", userId)
-      .single(); // pastikan hanya satu baris
+      .maybeSingle(); // ⬅️ ini tidak error kalau hasilnya null
 
     if (error) {
       console.error("Error fetching user data:", error);
       return null;
     }
 
+    if (!data) {
+      console.warn("No user found with id:", userId);
+      return null;
+    }
+
     return {
       id: data.id,
+      email: data.email,
       full_name: data.full_name,
       phone_number: data.phone_number,
+      role: data.role,
     };
   };
 
@@ -97,6 +105,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     password: string,
     fullName: string,
     role: UserRole = "customer",
+    phoneNumber?: string,
   ) => {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -104,6 +113,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       options: {
         data: {
           full_name: fullName,
+          phone_number: phoneNumber,
         },
       },
     });
@@ -116,10 +126,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         id: data.user.id,
         email: email,
         full_name: fullName,
+        phone_number: phoneNumber,
         role: role,
       });
 
       if (userError) throw userError;
+
+      // Also create a record in the profiles table for backward compatibility
+      const { error: profileError } = await supabase.from("profiles").insert({
+        id: data.user.id,
+        full_name: fullName,
+        avatar_url: null,
+        username: email.split("@")[0],
+        website: null,
+      });
+
+      if (profileError) console.error("Error creating profile:", profileError);
     }
   };
 
@@ -141,9 +163,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   ) => {
     if (!user) throw new Error("User not authenticated");
 
-    // Update ke tabel "profiles"
+    // Update ke tabel "users"
     const { error } = await supabase
-      .from("profiles")
+      .from("users")
       .update({
         ...data,
         updated_at: new Date().toISOString(),
