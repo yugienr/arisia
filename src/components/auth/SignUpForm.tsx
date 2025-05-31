@@ -6,11 +6,21 @@ import { Label } from "@/components/ui/label";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { useToast } from "@/components/ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function SignUpForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  // All users register as customers by default
+  const role = "customer";
   const [error, setError] = useState("");
   const { signUp } = useAuth();
   const navigate = useNavigate();
@@ -18,25 +28,37 @@ export default function SignUpForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters");
+      return;
+    }
     try {
-      await signUp(email, password, fullName);
+      await signUp(email, password, fullName, role);
       toast({
-        title: "Account created successfully",
-        description: "Please check your email to verify your account.",
+        title: "Registrasi berhasil",
+        description: "Silahkan login dengan akun yang telah dibuat.",
         duration: 5000,
       });
       navigate("/login");
-    } catch (error) {
-      setError("Error creating account");
+    } catch (error: any) {
+      setError(error.message || "Error creating account");
     }
   };
 
   return (
     <AuthLayout>
       <div className="bg-white rounded-2xl shadow-sm p-8 w-full max-w-md mx-auto">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Create an Account
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">Full Name</Label>
+            <Label
+              htmlFor="fullName"
+              className="text-sm font-medium text-gray-700"
+            >
+              Full Name
+            </Label>
             <Input
               id="fullName"
               placeholder="John Doe"
@@ -46,8 +68,14 @@ export default function SignUpForm() {
               className="h-12 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-gray-700">Email</Label>
+            <Label
+              htmlFor="email"
+              className="text-sm font-medium text-gray-700"
+            >
+              Email
+            </Label>
             <Input
               id="email"
               type="email"
@@ -58,8 +86,31 @@ export default function SignUpForm() {
               className="h-12 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-sm font-medium text-gray-700">Password</Label>
+            <Label
+              htmlFor="phoneNumber"
+              className="text-sm font-medium text-gray-700"
+            >
+              Phone Number
+            </Label>
+            <Input
+              id="phoneNumber"
+              type="tel"
+              placeholder="+62 xxx xxxx xxxx"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="h-12 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label
+              htmlFor="password"
+              className="text-sm font-medium text-gray-700"
+            >
+              Password
+            </Label>
             <Input
               id="password"
               type="password"
@@ -69,18 +120,22 @@ export default function SignUpForm() {
               required
               className="h-12 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
-            <p className="text-xs text-gray-500 mt-1">Password must be at least 8 characters</p>
+            <p className="text-xs text-gray-500 mt-1">
+              Password must be at least 8 characters
+            </p>
           </div>
+
+          {/* Account type selection removed - all users register as customers by default */}
+
           {error && <p className="text-sm text-red-500">{error}</p>}
-          
-          <Button 
-            type="submit" 
+
+          <Button
+            type="submit"
             className="w-full h-12 rounded-full bg-black text-white hover:bg-gray-800 text-sm font-medium"
           >
             Create account
           </Button>
-          
-          
+
           <div className="text-xs text-center text-gray-500 mt-6">
             By creating an account, you agree to our{" "}
             <Link to="/" className="text-blue-600 hover:underline">
@@ -91,10 +146,13 @@ export default function SignUpForm() {
               Privacy Policy
             </Link>
           </div>
-          
+
           <div className="text-sm text-center text-gray-600 mt-6">
             Already have an account?{" "}
-            <Link to="/login" className="text-blue-600 hover:underline font-medium">
+            <Link
+              to="/login"
+              className="text-blue-600 hover:underline font-medium"
+            >
               Sign in
             </Link>
           </div>

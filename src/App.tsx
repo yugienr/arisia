@@ -3,25 +3,46 @@ import { Navigate, Route, Routes, useRoutes } from "react-router-dom";
 import routes from "tempo-routes";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import Dashboard from "./components/pages/dashboard";
+import CustomerDashboard from "./components/pages/customer-dashboard";
+import AdminDashboard from "./components/pages/admin-dashboard";
 import Success from "./components/pages/success";
 import Home from "./components/pages/home";
 import { AuthProvider, useAuth } from "../supabase/auth";
 import { Toaster } from "./components/ui/toaster";
-import { LoadingScreen, LoadingSpinner } from "./components/ui/loading-spinner";
+import { LoadingScreen } from "./components/ui/loading-spinner";
+import ProfilePage from "./components/pages/profile";
+import OrdersPage from "./components/pages/orders";
+import NewOrderPage from "./components/pages/new-order";
+import OrderDetailsPage from "./components/pages/order-details";
+import UsersManagementPage from "./components/pages/users-management";
 
-function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
+function PrivateRoute({
+  children,
+  adminOnly = false,
+}: {
+  children: React.ReactNode;
+  adminOnly?: boolean;
+}) {
+  const { user, loading, isAdmin } = useAuth();
 
   if (loading) {
     return <LoadingScreen text="Authenticating..." />;
   }
 
   if (!user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
+  }
+
+  if (adminOnly && !isAdmin) {
+    return <Navigate to="/dashboard" />;
   }
 
   return <>{children}</>;
+}
+
+function DashboardRoute() {
+  const { isAdmin } = useAuth();
+  return isAdmin ? <AdminDashboard /> : <CustomerDashboard />;
 }
 
 function AppRoutes() {
@@ -35,16 +56,51 @@ function AppRoutes() {
           path="/dashboard"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <DashboardRoute />
             </PrivateRoute>
           }
         />
         <Route
-          path="/success"
+          path="/profile"
           element={
-            <Success />
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
           }
         />
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute>
+              <OrdersPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/orders/:id"
+          element={
+            <PrivateRoute>
+              <OrderDetailsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/new-order"
+          element={
+            <PrivateRoute>
+              <NewOrderPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <UsersManagementPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/success" element={<Success />} />
       </Routes>
       {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
     </>
