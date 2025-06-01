@@ -22,7 +22,7 @@ export default defineConfig({
   plugins: [
     react({
       plugins: conditionalPlugins,
-      astRefresh: false,
+      fastRefresh: false,
     }),
     tempo(),
   ],
