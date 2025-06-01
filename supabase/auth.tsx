@@ -67,20 +67,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    // Check active sessions and sets the user
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      const currentUser = session?.user ?? null;
-      setUser(currentUser);
-
-      if (currentUser) {
-        const userData = await fetchUserData(currentUser.id);
-        setUserData(userData);
-      }
-
-      setLoading(false);
-    });
-
-    // Listen for changes on auth state (signed in, signed out, etc.)
+    setLoading(true);
+    // Listen for auth state changes only
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
@@ -155,15 +143,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      console.error("Logout failed:", error.message);
-      throw error;
-    }
-
-    // Tambahan untuk memastikan state dibersihkan langsung
-    setUser(null);
-    setUserData(null);
+    setUser(null); // Reset manual
+    setUserData(null); // Reset manual
+    if (error) throw error;
   };
 
   const updateProfile = async (
