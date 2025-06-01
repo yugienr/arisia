@@ -653,7 +653,7 @@ export default function NewOrderPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="vehicleType">Vehicle Type</Label>
+                            <Label htmlFor="vehicleType">Vehicle Type1</Label>
                             <Select
                               value={selectedVehicleType}
                               onValueChange={setSelectedVehicleType}
