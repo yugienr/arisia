@@ -14,6 +14,7 @@ import {
   Train,
   Car,
   Package,
+  Download,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "../ui/loading-spinner";
@@ -89,9 +90,23 @@ const CustomerDashboard = () => {
 
   const navItems = [
     { icon: <CalendarDays size={20} />, label: "Dashboard", isActive: true },
-    { icon: <Plane size={20} />, label: "Book Tickets" },
-    { icon: <Package size={20} />, label: "My Orders" },
-    { icon: <Clock size={20} />, label: "History" },
+    {
+      icon: <Plane size={20} />,
+      label: "Flight Tickets",
+      href: "/new-order?type=flight",
+    },
+    {
+      icon: <Car size={20} />,
+      label: "Booking Car",
+      href: "/new-order?type=vehicle",
+    },
+    {
+      icon: <Train size={20} />,
+      label: "Train Tickets",
+      href: "/new-order?type=train",
+    },
+    { icon: <Package size={20} />, label: "My Orders", href: "/orders" },
+    { icon: <Clock size={20} />, label: "History", href: "/history" },
   ];
 
   return (
@@ -118,69 +133,6 @@ const CustomerDashboard = () => {
                   Book New Trip
                 </Button>
               </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-medium">
-                    Book Flight
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-blue-100 mb-4">
-                    Find and book flights to your destination
-                  </p>
-                  <Button
-                    onClick={() => navigate("/new-order?type=flight")}
-                    variant="secondary"
-                    className="bg-white text-blue-600 hover:bg-blue-50 w-full"
-                  >
-                    <Plane className="mr-2 h-4 w-4" /> Search Flights
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-medium">
-                    Book Train
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-green-100 mb-4">
-                    Find and book train tickets easily
-                  </p>
-                  <Button
-                    onClick={() => navigate("/new-order?type=train")}
-                    variant="secondary"
-                    className="bg-white text-green-600 hover:bg-green-50 w-full"
-                  >
-                    <Train className="mr-2 h-4 w-4" /> Search Trains
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-medium">
-                    Rent Vehicle
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-orange-100 mb-4">
-                    Rent a vehicle for your journey
-                  </p>
-                  <Button
-                    onClick={() => navigate("/new-order?type=vehicle")}
-                    variant="secondary"
-                    className="bg-white text-orange-600 hover:bg-orange-50 w-full"
-                  >
-                    <Car className="mr-2 h-4 w-4" /> Find Vehicles
-                  </Button>
-                </CardContent>
-              </Card>
             </div>
 
             {/* Recent Orders */}
@@ -267,6 +219,74 @@ const CustomerDashboard = () => {
                   </div>
                 </Card>
               )}
+            </div>
+
+            {/* Service Cards */}
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                Our Services
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                  <div className="h-32 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                    <Plane className="h-16 w-16 text-white opacity-75" />
+                  </div>
+                  <CardContent className="p-5">
+                    <h3 className="text-lg font-semibold mb-2">
+                      Flight Tickets
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4">
+                      Book flights to domestic and international destinations
+                    </p>
+                    <Button
+                      onClick={() => navigate("/new-order?type=flight")}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                    >
+                      Book Flight
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                  <div className="h-32 bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center">
+                    <Car className="h-16 w-16 text-white opacity-75" />
+                  </div>
+                  <CardContent className="p-5">
+                    <h3 className="text-lg font-semibold mb-2">
+                      Vehicle Rental
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4">
+                      Rent vehicles for your journey or get pickup service
+                    </p>
+                    <Button
+                      onClick={() => navigate("/new-order?type=vehicle")}
+                      className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                    >
+                      Rent Vehicle
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                  <div className="h-32 bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center">
+                    <Train className="h-16 w-16 text-white opacity-75" />
+                  </div>
+                  <CardContent className="p-5">
+                    <h3 className="text-lg font-semibold mb-2">
+                      Train Tickets
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4">
+                      Book train tickets for comfortable travel
+                    </p>
+                    <Button
+                      onClick={() => navigate("/new-order?type=train")}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      Book Train
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Profile Summary */}
