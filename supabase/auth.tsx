@@ -121,8 +121,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (error) throw error;
 
     if (data.user) {
-      // Create a record in the users table
-      const { error: userError } = await supabase.from("users").insert({
+      // Create or update in 'users' table
+      const { error: userError } = await supabase.from("users").upsert({
         id: data.user.id,
         email: email,
         full_name: fullName,
@@ -132,8 +132,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (userError) throw userError;
 
-      // Also create a record in the profiles table for backward compatibility
-      const { error: profileError } = await supabase.from("profiles").insert({
+      // Create or update in 'profiles' table
+      const { error: profileError } = await supabase.from("profiles").upsert({
         id: data.user.id,
         full_name: fullName,
         avatar_url: null,
@@ -141,7 +141,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         website: null,
       });
 
-      if (profileError) console.error("Error creating profile:", profileError);
+      if (profileError) console.error("Error upserting profile:", profileError);
     }
   };
 
