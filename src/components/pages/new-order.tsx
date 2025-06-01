@@ -536,7 +536,7 @@ export default function NewOrderPage() {
                           <div>
                             <Label
                               htmlFor="dropoffLocation"
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-4"
                             >
                               <MapPin size={16} className="text-red-500" />
                               Dropoff Location
@@ -564,6 +564,63 @@ export default function NewOrderPage() {
                             <p className="text-sm text-red-700">{error}</p>
                           </div>
                         )}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="vehicleType">Vehicle Type</Label>
+                            <Select
+                              value={selectedVehicleType}
+                              onValueChange={setSelectedVehicleType}
+                            >
+                              <SelectTrigger className="h-11">
+                                <SelectValue placeholder="Select vehicle type" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem
+                                  value="mpv-regular"
+                                  className="flex items-center"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Car className="h-4 w-4" />
+                                    <span>MPV Regular</span>
+                                    <span className="ml-auto text-xs text-gray-500">
+                                      Rp 5.000/km
+                                    </span>
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="mpv-premium">
+                                  <div className="flex items-center gap-2">
+                                    <Car className="h-4 w-4" />
+                                    <span>MPV Premium</span>
+                                    <span className="ml-auto text-xs text-gray-500">
+                                      Rp 7.000/km
+                                    </span>
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="electric">
+                                  <div className="flex items-center gap-2">
+                                    <Car className="h-4 w-4" />
+                                    <span>ELECTRIC (EV)</span>
+                                    <span className="ml-auto text-xs text-gray-500">
+                                      Rp 8.000/km
+                                    </span>
+                                  </div>
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="duration">
+                              Rental Duration (hours)
+                            </Label>
+                            <Input
+                              type="number"
+                              min="1"
+                              defaultValue="1"
+                              className="h-11"
+                            />
+                          </div>
+                        </div>
 
                         <Button
                           type="button"
@@ -650,63 +707,6 @@ export default function NewOrderPage() {
                               </div>
                             </div>
                           )}
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <Label htmlFor="vehicleType">Vehicle Type1</Label>
-                            <Select
-                              value={selectedVehicleType}
-                              onValueChange={setSelectedVehicleType}
-                            >
-                              <SelectTrigger className="h-11">
-                                <SelectValue placeholder="Select vehicle type" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem
-                                  value="mpv-regular"
-                                  className="flex items-center"
-                                >
-                                  <div className="flex items-center gap-2">
-                                    <Car className="h-4 w-4" />
-                                    <span>MPV Regular</span>
-                                    <span className="ml-auto text-xs text-gray-500">
-                                      Rp 5.000/km
-                                    </span>
-                                  </div>
-                                </SelectItem>
-                                <SelectItem value="mpv-premium">
-                                  <div className="flex items-center gap-2">
-                                    <Car className="h-4 w-4" />
-                                    <span>MPV Premium</span>
-                                    <span className="ml-auto text-xs text-gray-500">
-                                      Rp 7.000/km
-                                    </span>
-                                  </div>
-                                </SelectItem>
-                                <SelectItem value="electric">
-                                  <div className="flex items-center gap-2">
-                                    <Car className="h-4 w-4" />
-                                    <span>ELECTRIC (EV)</span>
-                                    <span className="ml-auto text-xs text-gray-500">
-                                      Rp 8.000/km
-                                    </span>
-                                  </div>
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div>
-                            <Label htmlFor="duration">
-                              Rental Duration (hours)
-                            </Label>
-                            <Input
-                              type="number"
-                              min="1"
-                              defaultValue="1"
-                              className="h-11"
-                            />
-                          </div>
-                        </div>
 
                         <div>
                           <Label htmlFor="notes">Additional Notes</Label>

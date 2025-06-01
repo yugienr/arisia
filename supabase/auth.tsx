@@ -155,7 +155,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+
+    if (error) {
+      console.error("Logout failed:", error.message);
+      throw error;
+    }
+
+    // Tambahan untuk memastikan state dibersihkan langsung
+    setUser(null);
+    setUserData(null);
   };
 
   const updateProfile = async (
