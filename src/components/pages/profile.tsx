@@ -58,7 +58,7 @@ const ProfilePage = () => {
     { icon: <CalendarDays size={20} />, label: "Dashboard", to: "/dashboard" },
     { icon: <User size={20} />, label: "Profile", isActive: true },
     { icon: <Package size={20} />, label: "Orders" },
-    { icon: <Settings size={20} />, label: "Settings" },
+    { icon: <Settings size={20} />, label: "Settings", to: "/settings" },
   ];
 
   return (
