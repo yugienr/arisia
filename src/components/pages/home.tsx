@@ -491,7 +491,7 @@ export default function LandingPage() {
               <Link to="/login">
                 <Button
                   variant="outline"
-                  className="rounded-full border-white text-white hover:bg-blue-700 text-base px-8 py-6 w-full sm:w-auto"
+                  className="rounded-full bg-white text-blue-600 hover:bg-blue-50 text-base px-8 py-6 shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
                   Masuk
                 </Button>
